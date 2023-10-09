@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:icloud/assets/items_images.dart';
+import 'package:icloud/assets/items_urls.dart';
 import 'package:icloud/widgets/items_list.dart';
 import 'package:icloud/widgets/tapable_items.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -33,7 +35,14 @@ class HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 80,
               ),
-              TapableItems(imageUrl: ItemsImages.icloudImage, onPressed: () {}),
+              TapableItems(
+                imageUrl: ItemsImages.icloudImage,
+                onPressed: () async {
+                  if (!await launchUrl(ItemsUrls.icloudUrl)) {
+                    throw Exception('Could not launch ${ItemsUrls.icloudUrl}');
+                  }
+                },
+              ),
               Padding(
                 padding: const EdgeInsets.all(32.0),
                 child: SizedBox(
