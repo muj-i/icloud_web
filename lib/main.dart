@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:icloud/assets/items_images.dart';
-import 'package:icloud/items_list.dart';
+import 'package:icloud/widgets/items_list.dart';
 import 'package:icloud/widgets/tapable_items.dart';
 
 void main() => runApp(
-      const MaterialApp(
-        
-        debugShowCheckedModeBanner: true,
-        home: HomePage(),
+      MaterialApp(
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          useMaterial3: true,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const HomePage(),
       ),
     );
 
@@ -22,7 +25,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.blue.shade200.withOpacity(.5),
+      backgroundColor: Colors.blue.shade50,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
