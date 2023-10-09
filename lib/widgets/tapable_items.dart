@@ -10,9 +10,9 @@ class TapableItems extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: InkWell(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(200),
         onTap: onPressed,
-        child: Image.asset(imageUrl, width: 450,)),
+        child: Image.asset(imageUrl, width: 350,)),
     );
   }
 }
