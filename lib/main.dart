@@ -30,15 +30,18 @@ class HomePageState extends State<HomePage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(
+                height: 80,
+              ),
               TapableItems(imageUrl: ItemsImages.icloudImage, onPressed: () {}),
               Padding(
                 padding: const EdgeInsets.all(32.0),
                 child: SizedBox(
-                  height: 340,
+                  height: 200,
                   child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3),
+                            crossAxisCount: 4),
                     itemCount: icloudItemsList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return icloudItemsList[index];
