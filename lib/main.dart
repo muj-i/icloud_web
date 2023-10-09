@@ -1,44 +1,50 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-
-const String _url = 'https://www.icloud.com/';
+import 'package:icloud/assets/items_images.dart';
+import 'package:icloud/items_list.dart';
+import 'package:icloud/widgets/tapable_items.dart';
 
 void main() => runApp(
       const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: WebViewPage(),
+        
+        debugShowCheckedModeBanner: true,
+        home: HomePage(),
       ),
     );
 
-class WebViewPage extends StatefulWidget {
-  const WebViewPage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  WebViewPageState createState() => WebViewPageState();
+  HomePageState createState() => HomePageState();
 }
 
-class WebViewPageState extends State<WebViewPage> {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
-
+class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.blue.shade200.withOpacity(.5),
       body: SafeArea(
-        child: WebView(
-          initialUrl: _url,
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController webViewController) {
-            _controller.complete(webViewController);
-          },
-          navigationDelegate: (NavigationRequest request) {
-            if (request.url.contains('javascript:')) {
-              return NavigationDecision.prevent;
-            }
-            return NavigationDecision.navigate;
-          },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TapableItems(imageUrl: ItemsImages.icloudImage, onPressed: () {}),
+              Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: SizedBox(
+                  height: 340,
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3),
+                    itemCount: icloudItemsList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return icloudItemsList[index];
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
